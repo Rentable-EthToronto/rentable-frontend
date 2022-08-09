@@ -18,7 +18,7 @@ export const NFTInfo: React.FC<{
        "
       >
         <div className="text-xl font-semibold">{title}</div>
-        <div className="text-sm text-slate-500">{`(#${id})`}</div>
+
         <div className="mt-2 flex">
           <div className="text-sm">
             <span className="font-bold ">Token Address: </span>

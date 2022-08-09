@@ -6,16 +6,15 @@ export const NftCard: React.FC<{
   children: React.ReactElement<any, any>;
 }> = ({ image, children }) => {
   return (
-    <div className="m-6 flex w-1/4 flex-col rounded-3xl border border-slate-200  text-slate-700 hover:shadow-lg">
+    <div className="m-9 flex w-1/4 flex-col rounded-3xl border border-slate-200  text-slate-700 hover:shadow-lg">
       <div className="rounded-md">
-        <MediaRenderer
+        <img
           src={image}
           style={{
-            // Fit the image to the container
             width: "100%",
             height: "100%",
-            borderTopRightRadius: 16,
-            borderTopLeftRadius: 16,
+            borderTopRightRadius: 14,
+            borderTopLeftRadius: 14,
           }}
         />
       </div>

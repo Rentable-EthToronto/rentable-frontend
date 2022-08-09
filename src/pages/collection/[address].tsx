@@ -15,10 +15,6 @@ import Layout from "@/src/components/layout";
 
 export async function getServerSideProps(context: NextPageContext) {
   const address: string | string[] | undefined = context.query.address;
-
-  /***
-   * TODO: use alchemy to read out NFTs for owner
-   */
   const data = await getNftsForOwner(alchemy, address?.toString() ?? "");
   return { props: { data: JSON.stringify(data) } };
 }
@@ -31,9 +27,6 @@ const CollectionPage: NextPage<{ data: string; address: string }> = ({
   const userAddress = useAddress();
   const viewingOwnCollection = userAddress === address;
 
-  /***
-   * TODO: parse out JSON object from string passed into props
-   */
   const fetchedData: OwnedNftsResponse = JSON.parse(data);
 
   const nfts = fetchedData?.ownedNfts?.map((ownedNft: OwnedNft) => {
@@ -69,7 +62,7 @@ const CollectionPage: NextPage<{ data: string; address: string }> = ({
   });
 
   if (!nfts || nfts.length === 0) {
-    return <div className="large-text">No Data To Show</div>;
+    return <div className="large-text">No NFTs To Show</div>;
   }
   return (
     <Layout>
