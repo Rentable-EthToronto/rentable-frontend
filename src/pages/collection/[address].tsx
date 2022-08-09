@@ -6,7 +6,7 @@ import {
   OwnedNftsResponse,
   getNftsForOwner,
 } from "@alch/alchemy-sdk";
-import NftCard from "../../components/NFTCard";
+import NftCard from "../../components/NftCard";
 import { alchemy } from "../../config/alchemy";
 import { useRouter } from "next/router";
 import NFTInfo from "../../components/NFTInfo";
