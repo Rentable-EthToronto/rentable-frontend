@@ -8,21 +8,21 @@ export const Navbar = () => {
   const { address } = useWeb3();
 
   return (
-    <nav className="flex justify-around items-center">
+    <nav className="flex justify-around items-center pt-4">
       <Logo />
       <ul className="flex">
         <li>
           <Link href="/" id="listings">
-            <button className="grow-on-hover   whitespace-nowrap p-3 font-normal text-slate-700 hover:font-semibold ">
+            <div className="grow-on-hover   whitespace-nowrap p-3 font-normal text-white hover:font-semibold ">
               Listings
-            </button>
+            </div>
           </Link>
         </li>
 
         {address && (
           <li>
             <Link href={`/collection/${address}`} id="my collection">
-              <div className="grow-on-hover  whitespace-nowrap p-3 font-normal text-slate-700 hover:font-semibold ">
+              <div className="grow-on-hover  whitespace-nowrap p-3 font-normal text-white hover:font-semibold ">
                 My Collection
               </div>
             </Link>

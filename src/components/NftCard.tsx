@@ -1,20 +1,19 @@
 import * as React from "react";
-import { MediaRenderer } from "@thirdweb-dev/react";
 
 export const NftCard: React.FC<{
   image: string;
   children: React.ReactElement<any, any>;
 }> = ({ image, children }) => {
   return (
-    <div className="m-9 flex w-1/4 flex-col rounded-3xl border border-slate-200  text-slate-700 hover:shadow-lg">
+    <div className="m-9 flex w-1/4 flex-col rounded-3xl border border-spacing-2 border-slate-200  text-white hover:shadow-lg">
       <div className="rounded-md">
         <img
           src={image}
           style={{
             width: "100%",
             height: "100%",
-            borderTopRightRadius: 14,
-            borderTopLeftRadius: 14,
+            borderTopRightRadius: 10,
+            borderTopLeftRadius: 10,
           }}
         />
       </div>
