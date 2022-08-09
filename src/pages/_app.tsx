@@ -1,4 +1,4 @@
-import "../styles/globals.css";
+import "../../styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
@@ -15,7 +15,6 @@ const { chains, provider } = configureChains(
     chain.goerli,
     chain.kovan,
     chain.rinkeby,
-    chain.ropsten,
   ],
 
   [
