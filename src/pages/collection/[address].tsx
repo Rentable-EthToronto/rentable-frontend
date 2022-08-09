@@ -13,6 +13,7 @@ export async function getServerSideProps(context: NextPageContext) {
   const address: string | string[] | undefined = context.query.address;
   const data = await getNftsForOwner(alchemy, address?.toString() ?? '');
   return { props: { data: JSON.stringify(data) } };
+  // Note: Enable to get NFT list from Ankr, but it doesn't have descripton meta data
   // const ankrRepository = new AnkrRepository();
   // const ankrData = await ankrRepository.getOwnNFTs(address?.toString() || '');
   // return { props: { data: JSON.stringify(ankrData) } };
