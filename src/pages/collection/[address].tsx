@@ -7,14 +7,15 @@ import { useRouter } from 'next/router';
 import NFTInfo from '../../components/NFTInfo';
 import { useAddress } from '@thirdweb-dev/react';
 import Layout from '@/src/components/layout';
-import { AnkrRepository } from '@/src/infrastructure/repositories/AnkrRepository';
+// import { AnkrRepository, AnkrNftResponse, AnkrNft } from '@/src/infrastructure/repositories/AnkrRepository';
 
 export async function getServerSideProps(context: NextPageContext) {
   const address: string | string[] | undefined = context.query.address;
   const data = await getNftsForOwner(alchemy, address?.toString() ?? '');
+  return { props: { data: JSON.stringify(data) } };
   // const ankrRepository = new AnkrRepository();
   // const ankrData = await ankrRepository.getOwnNFTs(address?.toString() || '');
-  return { props: { data: JSON.stringify(data) } };
+  // return { props: { data: JSON.stringify(ankrData) } };
 }
 
 const CollectionPage: NextPage<{ data: string; address: string }> = ({ data, address }) => {
@@ -23,16 +24,23 @@ const CollectionPage: NextPage<{ data: string; address: string }> = ({ data, add
   const viewingOwnCollection = userAddress === address;
 
   const fetchedData: OwnedNftsResponse = JSON.parse(data);
+  // const fetchedData: AnkrNftResponse = JSON.parse(data);
 
   const nfts = fetchedData?.ownedNfts?.map((ownedNft: OwnedNft) => {
+    // const nfts = fetchedData.result.assets.map((ownedNft: AnkrNft) => {
     const address = ownedNft.contract.address;
     const description = ownedNft.description;
     const image = ownedNft.media[0]?.gateway;
+    const title = ownedNft.title;
+    // const address = ownedNft.contractAddress;
+    // const description = '';
+    // const image = ownedNft.imageUrl;
+    // const title = ownedNft.name;
 
     return (
       <NftCard image={image} key={ownedNft.tokenId}>
         <div id='container w-full'>
-          <NFTInfo id={ownedNft.tokenId} description={description} title={ownedNft.title} address={address} />
+          <NFTInfo id={ownedNft.tokenId} description={description} title={title} address={address} />
           {viewingOwnCollection && (
             <div
               id='list-button'
