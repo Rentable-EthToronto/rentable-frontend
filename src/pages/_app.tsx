@@ -5,6 +5,7 @@ import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import { publicProvider } from "wagmi/providers/public";
 import type { AppProps } from "next/app";
+import { Web3ContextProvider } from "../context/web3Context";
 
 const { chains, provider } = configureChains(
   [
@@ -38,7 +39,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>
-        <Component {...pageProps} />
+        <Web3ContextProvider>
+          <Component {...pageProps} />
+        </Web3ContextProvider>
       </RainbowKitProvider>
     </WagmiConfig>
   );

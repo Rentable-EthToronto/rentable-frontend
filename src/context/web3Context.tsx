@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, ReactNode } from "react";
 
 import { useAccount } from "wagmi";
 
@@ -11,7 +11,7 @@ export const Web3Context = React.createContext<Web3ContextInterface>({
   address: "", // user's signed in address
 });
 
-export const Web3ContextProvider: React.FC = ({ children }) => {
+export const Web3ContextProvider = ({ children }: { children: ReactNode }) => {
   const { address } = useAccount();
   return (
     <Web3Context.Provider
