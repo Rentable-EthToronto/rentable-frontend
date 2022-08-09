@@ -6,6 +6,8 @@ import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import { publicProvider } from "wagmi/providers/public";
 import type { AppProps } from "next/app";
 import { Web3ContextProvider } from "../context/web3Context";
+import { ThirdwebProvider } from "@thirdweb-dev/react";
+import { targetChainId } from "../config/targetChainConfig";
 
 const { chains, provider } = configureChains(
   [
@@ -25,7 +27,7 @@ const { chains, provider } = configureChains(
 );
 
 const { connectors } = getDefaultWallets({
-  appName: "My RainbowKit App",
+  appName: "Rentabale App",
   chains,
 });
 
@@ -37,13 +39,15 @@ const wagmiClient = createClient({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains}>
-        <Web3ContextProvider>
-          <Component {...pageProps} />
-        </Web3ContextProvider>
-      </RainbowKitProvider>
-    </WagmiConfig>
+    <ThirdwebProvider desiredChainId={targetChainId}>
+      <WagmiConfig client={wagmiClient}>
+        <RainbowKitProvider chains={chains}>
+          <Web3ContextProvider>
+            <Component {...pageProps} />
+          </Web3ContextProvider>
+        </RainbowKitProvider>
+      </WagmiConfig>
+    </ThirdwebProvider>
   );
 }
 
