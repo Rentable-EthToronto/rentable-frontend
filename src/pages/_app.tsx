@@ -1,33 +1,21 @@
-import "../../styles/globals.css";
-import "@rainbow-me/rainbowkit/styles.css";
-import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
-import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
-import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
-import { publicProvider } from "wagmi/providers/public";
-import type { AppProps } from "next/app";
-import { Web3ContextProvider } from "../context/web3Context";
-import { ThirdwebProvider } from "@thirdweb-dev/react";
-import { targetChainId } from "../config/targetChainConfig";
+import '../../styles/globals.css';
+import '@rainbow-me/rainbowkit/styles.css';
+import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
+import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
+import { publicProvider } from 'wagmi/providers/public';
+import type { AppProps } from 'next/app';
+import { Web3ContextProvider } from '../context/web3Context';
+import { ThirdwebProvider } from '@thirdweb-dev/react';
+import { targetChainId } from '../config/targetChainConfig';
 
 const { chains, provider } = configureChains(
-  [
-    chain.mainnet,
-    chain.polygon,
-    chain.optimism,
-    chain.arbitrum,
-    chain.goerli,
-    chain.kovan,
-    chain.rinkeby,
-  ],
-
-  [
-    jsonRpcProvider({ rpc: () => ({ http: "https://rpc.ankr.com/eth" }) }),
-    publicProvider(),
-  ]
+  [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum, chain.goerli, chain.kovan, chain.rinkeby],
+  [jsonRpcProvider({ rpc: () => ({ http: 'https://rpc.ankr.com/eth' }) }), publicProvider()]
 );
 
 const { connectors } = getDefaultWallets({
-  appName: "Rentabale App",
+  appName: 'Rentabale App',
   chains,
 });
 
