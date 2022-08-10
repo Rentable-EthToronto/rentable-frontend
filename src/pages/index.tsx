@@ -9,7 +9,7 @@ const Home: NextPage = () => {
 
   return (
     <Layout>
-      <div className="container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+      <div className="container pt-24 md:pt-24 mx-auto flex flex-wrap flex-col md:flex-row items-center">
         <div className="flex flex-col w-full xl:w-2/5 pb-24 justify-center lg:items-start overflow-y-hidden ">
           <h1 className="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
             We can make your

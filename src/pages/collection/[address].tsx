@@ -64,18 +64,19 @@ const CollectionPage: NextPage<{ data: string; address: string }> = ({
     );
   });
 
-  if (!nfts || nfts.length === 0) {
-    return <div className="large-text">No NFTs To Show</div>;
-  }
   return (
     <Layout>
-      <div id="container" className="p-6 px-10">
+      <div id="container" className="p-6 px-10 w-full">
         <h1 className="text-center text-2xl font-normal text-slate-500 hover:font-semibold">
           Collection at {userAddress}
         </h1>
-        <div id="container" className="flex w-full flex-wrap justify-center">
-          {nfts}
-        </div>
+        {!nfts || nfts.length === 0 ?
+          <div className="large-text">No NFTs To Show</div>
+        :
+          <div id="container" className="flex w-full flex-wrap justify-center">
+            {nfts}
+          </div>
+        }
       </div>
     </Layout>
   );

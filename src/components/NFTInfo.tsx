@@ -32,8 +32,8 @@ export const NFTInfo: React.FC<{
           </div>
         </div>
       </div>
-      <p className="mt-2 text-sm">
-        {description ? description.slice(0, 200) : "No Description"}
+      <p className="mt-2 text-sm ">
+        {!description ? "No Description" : description.length > 30 ? `${description.slice(0, 30)}...` : description}
       </p>
     </>
   );
