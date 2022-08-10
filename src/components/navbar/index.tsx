@@ -4,7 +4,7 @@ import Logo from "./logo";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useWeb3 } from "../../context/web3Context";
 
-export const Navbar = () => {
+const Navbar = () => {
   const { address } = useWeb3();
 
   return (
