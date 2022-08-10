@@ -15,6 +15,7 @@ const contractConfig = {
 const Listings: NextPage = () => {
   const { address } = useWeb3();
   const [totalRentalUnits, setTotalRentalUnits] = useState(0);
+  const [listings, setListings] = useState([]);
   const [latestRentalId, setLatestRentalId] = useState(0);
   const [balance, setBalance] = useState(0);
   const [owner, setOwner] = useState("");
@@ -26,7 +27,7 @@ const Listings: NextPage = () => {
     functionName: "totalSupply",
     watch: true,
   });
-  
+
   const { data: ownerData } = useContractRead({
     ...contractConfig,
     functionName: "ownerOf",
@@ -38,10 +39,16 @@ const Listings: NextPage = () => {
     functionName: "balanceOf",
     args: address,
   });
-  
+
   const { data: latestRentalIdData } = useContractRead({
     ...contractConfig,
     functionName: "getLatestId",
+  });
+
+  const { data : listingsData } = useContractRead({
+    ...contractConfig,
+    functionName: "getRentalUnitList",
+    args: [0, latestRentalId],
   });
 
   useEffect(() => {
@@ -71,7 +78,13 @@ const Listings: NextPage = () => {
     console.log(latestRentalId);
   }, []);
 
+  useEffect(() => {
+    if (listingsData) {
+      setListings(listingsData);
+    }
+  }, []);
 
+  console.log(listingsData);
   return (
     <Layout>
       {loading && <div>Loading...</div>}
