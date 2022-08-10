@@ -13,7 +13,7 @@ const Navbar = () => {
       <ul className="flex">
         <li>
           <Link href="/" id="listings">
-            <button className="grow-on-hover   whitespace-nowrap p-3 font-normal text-white hover:font-semibold ">
+            <button className="grow-on-hover   whitespace-nowrap p-3 text-base text-white hover:font-semibold ">
               Listings
             </button>
           </Link>
@@ -22,7 +22,7 @@ const Navbar = () => {
         {address && (
           <li>
             <Link href={`/collection/${address}`} id="my collection">
-              <button className="grow-on-hover  whitespace-nowrap p-3 font-normal text-white hover:font-semibold">
+              <button className="grow-on-hover  whitespace-nowrap p-3 text-base text-white hover:font-semibold">
                 My Collection
               </button>
             </Link>

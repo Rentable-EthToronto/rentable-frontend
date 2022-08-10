@@ -18,11 +18,11 @@ const Home: NextPage = () => {
             </span>
             to make you money!
           </h1>
-          <p className="leading-normal text-base md:text-2xl mb-8 text-center md:text-left">
+          <p className="leading-normal text-base text-gray-400   md:text-2xl mt-2 mb-8 text-center md:text-left">
             NFT protocal that make NFTs rentable for multple use!
           </p>
         </div>
-        <div className="w-full xl:w-3/5 p-12 overflow-hidden">
+        <div className="w-full xl:w-1/2 p-12 overflow-hidden ml-6">
           <img
             className="mx-auto w-full md:w-4/5 transform -rotate-6 transition hover:scale-105 duration-700 ease-in-out hover:rotate-6"
             src="bored-ape.png"
