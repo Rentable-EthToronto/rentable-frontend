@@ -12,7 +12,7 @@ const Navbar = () => {
       <Logo />
       <ul className="flex">
         <li>
-          <Link href="/" id="listings">
+          <Link href="/listings" id="listings">
             <button className="grow-on-hover   whitespace-nowrap p-3 text-base text-white hover:font-semibold ">
               Listings
             </button>
