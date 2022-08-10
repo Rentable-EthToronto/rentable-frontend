@@ -80,7 +80,7 @@ const Listings: NextPage = () => {
 
   useEffect(() => {
     if (listingsData) {
-      setListings(listingsData);
+      setListings(listingsData as []);
     }
   }, []);
 
