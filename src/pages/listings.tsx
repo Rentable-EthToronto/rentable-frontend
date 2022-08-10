@@ -15,6 +15,7 @@ const contractConfig = {
 const Listings: NextPage = () => {
   const { address } = useWeb3();
   const [totalRentalUnits, setTotalRentalUnits] = useState(0);
+  const [owner, setOwner] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -23,12 +24,23 @@ const Listings: NextPage = () => {
     functionName: "totalSupply",
     watch: true,
   });
+  const { data: ownerData } = useContractRead({
+    ...contractConfig,
+    functionName: "ownerOf",
+    tokenId: "0",
+  });
 
   useEffect(() => {
     if (totalSupplyData) {
       setTotalRentalUnits(totalSupplyData.toNumber());
     }
-  }, [totalSupplyData, address]);
+  }, []);
+  useEffect(() => {
+    if (ownerData) {
+      setOwner(ownerData.address);
+    }
+    console.log(owner);
+  }, []);
 
   return (
     <Layout>
@@ -37,7 +49,7 @@ const Listings: NextPage = () => {
       {error && <div>{error}</div>}
 
       <div className="container pt-24 md:pt-24 mx-auto flex flex-wrap flex-col md:flex-row items-center text-base text-white">
-        Totally {totalRentalUnits} rentable NFTs
+        Totally {totalRentalUnits} rentable NFTs Owner{owner}
       </div>
     </Layout>
   );
