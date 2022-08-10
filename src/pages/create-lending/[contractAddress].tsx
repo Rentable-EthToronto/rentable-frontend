@@ -1,30 +1,31 @@
 import { NextPage, NextPageContext } from "next";
 import * as React from "react";
+import RentableABI from "../../deployment/Rentable.abi.json";
 import { getNftMetadata, Nft, NftTokenType } from "@alch/alchemy-sdk";
 import { MediaRenderer } from "@thirdweb-dev/react";
 import { useRouter } from "next/router";
 import { alchemy } from "../../config/alchemy";
 import Layout from "@/src/components/layout";
 import { Input, Button } from "@mui/material";
+import { usePrepareContractWrite, useContractWrite } from "wagmi";
 
-export async function getServerSideProps(context: NextPageContext) {
-  const contractAddress: string | string[] | undefined =
-    context.query.contractAddress;
-  const tokenId: string | string[] | undefined = context.query.tokenId;
+const rentableABI = RentableABI;
 
-  const data = await getNftMetadata(alchemy, {
-    tokenId: tokenId?.toString() ?? "",
-    contract: { address: contractAddress?.toString() ?? "" },
-    tokenType: NftTokenType.ERC721,
-  });
-
-  return { props: { data: JSON.stringify(data) } };
-}
 
 const CreateLendingPage: NextPage<{ data: string }> = ({ data }) => {
   const router = useRouter();
   const NFT: Nft = JSON.parse(data);
   const [price, setPrice] = React.useState<number>(0.05);
+  const [duration, setDuration] = React.useState<number>(3600);
+  const  deposit = 30000;
+
+  const { config } = usePrepareContractWrite({
+    addressOrName: '0xcDFD4F4c5A7f4138d65D31842cd9081F8539c57a',
+    contractInterface: rentableABI,
+    functionName: 'createRentalUnit',
+    args: [NFT.contract, NFT.tokenId, deposit, price, duration],
+  })
+  const { isLoading, isSuccess, write } = useContractWrite(config)
 
   const handlePriceChange = (event: { target: { value: any } }) => {
     setPrice(event.target.value);
@@ -100,3 +101,17 @@ const CreateLendingPage: NextPage<{ data: string }> = ({ data }) => {
 };
 
 export default CreateLendingPage;
+
+export async function getServerSideProps(context: NextPageContext) {
+  const contractAddress: string | string[] | undefined =
+    context.query.contractAddress;
+  const tokenId: string | string[] | undefined = context.query.tokenId;
+
+  const data = await getNftMetadata(alchemy, {
+    tokenId: tokenId?.toString() ?? "",
+    contract: { address: contractAddress?.toString() ?? "" },
+    tokenType: NftTokenType.ERC721,
+  });
+
+  return { props: { data: JSON.stringify(data) } };
+}
