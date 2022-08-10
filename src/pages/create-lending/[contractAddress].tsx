@@ -27,6 +27,8 @@ const CreateLendingPage: NextPage<{ data: string }> = ({ data }) => {
   })
   const { isLoading, isSuccess, write } = useContractWrite(config)
 
+  console.log(write)
+
   const handlePriceChange = (event: { target: { value: any } }) => {
     setPrice(event.target.value);
   };
@@ -90,7 +92,7 @@ const CreateLendingPage: NextPage<{ data: string }> = ({ data }) => {
             <Button
               className="btn btn-primary pt-4"
               sx={{ backgroundColor: "white" }}
-              disabled={!write} onClick={() => write?.()}
+              onClick={() => write?.()}
             >
               Lend it
             </Button>
