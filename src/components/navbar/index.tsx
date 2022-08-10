@@ -13,18 +13,18 @@ export const Navbar = () => {
       <ul className="flex">
         <li>
           <Link href="/" id="listings">
-            <div className="grow-on-hover   whitespace-nowrap p-3 font-normal text-white hover:font-semibold ">
+            <button className="grow-on-hover   whitespace-nowrap p-3 font-normal text-white hover:font-semibold ">
               Listings
-            </div>
+            </button>
           </Link>
         </li>
 
         {address && (
           <li>
             <Link href={`/collection/${address}`} id="my collection">
-              <div className="grow-on-hover  whitespace-nowrap p-3 font-normal text-white hover:font-semibold ">
+              <button className="grow-on-hover  whitespace-nowrap p-3 font-normal text-white hover:font-semibold">
                 My Collection
-              </div>
+              </button>
             </Link>
           </li>
         )}

@@ -7,7 +7,7 @@ interface IProps {
 
 const Layout = ({ children }: IProps) => {
   return (
-    <div className="min-h-screen space-t-5 bg-black">
+    <div className="leading-normal tracking-normal min-h-screen h-full space-t-5 bg-cover bg-fixed bg-[url('/background.png')]">
       <Header />
       <Main>{children}</Main>
     </div>
