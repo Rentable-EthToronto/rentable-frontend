@@ -15,6 +15,8 @@ const contractConfig = {
 const Listings: NextPage = () => {
   const { address } = useWeb3();
   const [totalRentalUnits, setTotalRentalUnits] = useState(0);
+  const [latestRentalId, setLatestRentalId] = useState(0);
+  const [balance, setBalance] = useState(0);
   const [owner, setOwner] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -24,10 +26,22 @@ const Listings: NextPage = () => {
     functionName: "totalSupply",
     watch: true,
   });
+  
   const { data: ownerData } = useContractRead({
     ...contractConfig,
     functionName: "ownerOf",
     args: 0,
+  });
+
+  const { data: balanceData } = useContractRead({
+    ...contractConfig,
+    functionName: "balanceOf",
+    args: address,
+  });
+  
+  const { data: latestRentalIdData } = useContractRead({
+    ...contractConfig,
+    functionName: "getLatestId",
   });
 
   useEffect(() => {
@@ -35,12 +49,28 @@ const Listings: NextPage = () => {
       setTotalRentalUnits(totalSupplyData.toNumber());
     }
   }, []);
+
   useEffect(() => {
     if (ownerData) {
       setOwner(ownerData.address);
     }
     console.log(owner);
   }, []);
+
+  useEffect(() => {
+    if (balanceData) {
+      setBalance(balanceData.toNumber());
+    }
+    console.log(balance);
+  }, []);
+
+  useEffect(() => {
+    if (latestRentalIdData) {
+      setLatestRentalId(latestRentalIdData.toNumber());
+    }
+    console.log(latestRentalId);
+  }, []);
+
 
   return (
     <Layout>
@@ -50,6 +80,13 @@ const Listings: NextPage = () => {
 
       <div className="container pt-24 md:pt-24 mx-auto flex flex-wrap flex-col md:flex-row items-center text-base text-white">
         Totally {totalRentalUnits} rentable NFTs Owner{owner}
+        Balance of {address} is {balance}
+      </div>
+      <div className="container pt-24 md:pt-24 mx-auto flex flex-wrap flex-col md:flex-row items-center text-base text-white">
+        Balance of {address} is {balance}
+      </div>
+      <div className="container pt-24 md:pt-24 mx-auto flex flex-wrap flex-col md:flex-row items-center text-base text-white">
+        Latest Rental Id is {latestRentalId}
       </div>
     </Layout>
   );
