@@ -25,7 +25,7 @@ const CreateLendingPage: NextPage<{ data: string }> = ({ data }) => {
   const NFT: Nft = JSON.parse(data);
   const [price, setPrice] = React.useState<number>(0.05);
 
-  const handlePriceChange = (event: { target: { value: number } }) => {
+  const handlePriceChange = (event: { target: { value: any } }) => {
     setPrice(event.target.value);
   };
 
