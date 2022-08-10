@@ -45,7 +45,7 @@ const Listings: NextPage = () => {
     functionName: "getLatestId",
   });
 
-  const { data : listingsData } = useContractRead({
+  const { data: listingsData } = useContractRead({
     ...contractConfig,
     functionName: "getRentalUnitList",
     args: [0, latestRentalId],
@@ -82,23 +82,32 @@ const Listings: NextPage = () => {
     if (listingsData) {
       setListings(listingsData as []);
     }
-  }, []);
+  }, [listingsData]);
 
-  console.log(listingsData);
+  console.log("listingsData", listings);
   return (
     <Layout>
-      {loading && <div>Loading...</div>}
-
       {error && <div>{error}</div>}
-
-      <div className="container pt-24 md:pt-24 mx-auto flex flex-wrap flex-col md:flex-row items-center text-base text-white">
-        Totally {totalRentalUnits} rentable NFTs Owner{owner}
-      </div>
-      <div className="container pt-24 md:pt-24 mx-auto flex flex-wrap flex-col md:flex-row items-center text-base text-white">
-        Balance of {address} is {balance}
-      </div>
-      <div className="container pt-24 md:pt-24 mx-auto flex flex-wrap flex-col md:flex-row items-center text-base text-white">
-        Latest Rental Id is {latestRentalId}
+      <div className="flex flex-col">
+        <div className="container pt-24 md:pt-24 mx-auto flex flex-wrap flex-col md:flex-row items-center text-base text-white">
+          Totally {totalRentalUnits} rentable NFTs available
+        </div>
+        <div className="container pt-24 md:pt-24 mx-auto flex flex-wrap flex-col md:flex-row items-center text-base text-white">
+          Balance of {address} is {balance}
+        </div>
+        <div className="container pt-24 md:pt-24 mx-auto flex flex-wrap  md:flex-row items-center text-base text-white">
+          <div className="flex flex-col">
+            {listings &&
+              listings.map((listing, idx) => (
+                <div>
+                  <div key={idx}>
+                    Rentable NFT Contract Address: {listing[0]}
+                  </div>
+                  {/* <div key={idx}>Rentable NFT Token ID: {listing[1]}</div> */}
+                </div>
+              ))}
+          </div>
+        </div>
       </div>
     </Layout>
   );
