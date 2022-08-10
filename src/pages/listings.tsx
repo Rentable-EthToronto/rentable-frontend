@@ -5,12 +5,7 @@ import RentableABI from "../deployment/Rentable.abi.json";
 import { useWeb3 } from "../context/web3Context";
 import Layout from "../components/layout";
 import { useContract, useProvider, useContractRead } from "wagmi";
-
-const rentableABI = RentableABI;
-const contractConfig = {
-  addressOrName: "0xcDFD4F4c5A7f4138d65D31842cd9081F8539c57a",
-  contractInterface: rentableABI,
-};
+import { contractConfig } from "../config/contractAddresses";
 
 const Listings: NextPage = () => {
   const { address } = useWeb3();
@@ -24,9 +19,11 @@ const Listings: NextPage = () => {
     functionName: "totalSupply",
     watch: true,
   });
+
   const { data: ownerData } = useContractRead({
     ...contractConfig,
     functionName: "ownerOf",
+    args: [0],
   });
 
   useEffect(() => {
@@ -39,7 +36,7 @@ const Listings: NextPage = () => {
       setOwner(ownerData.address);
     }
     console.log(owner);
-  }, []);
+  }, [ownerData]);
 
   return (
     <Layout>
