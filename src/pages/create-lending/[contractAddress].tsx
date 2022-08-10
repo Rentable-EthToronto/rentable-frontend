@@ -15,19 +15,19 @@ const rentableABI = RentableABI;
 const CreateLendingPage: NextPage<{ data: string }> = ({ data }) => {
   const router = useRouter();
   const NFT: Nft = JSON.parse(data);
-  const [price, setPrice] = React.useState<number>(0.05);
+  const [price, setPrice] = React.useState<number>(50000);
   const [duration, setDuration] = React.useState<number>(3600);
-  const deposit = 30000;
+  const deposit = 3000000;
 
   const { config } = usePrepareContractWrite({
     addressOrName: '0xcDFD4F4c5A7f4138d65D31842cd9081F8539c57a',
     contractInterface: rentableABI,
     functionName: 'createRentalUnit',
-    args: [NFT.contract, NFT.tokenId, deposit, price, duration],
+    args: [NFT.contract.address, NFT.tokenId, deposit, price, duration],
   })
-  const { isLoading, isSuccess, write } = useContractWrite(config)
+  const { error, isError, status, isLoading, isSuccess, write } = useContractWrite(config)
 
-  console.log(write)
+  console.log(NFT)
 
   const handlePriceChange = (event: { target: { value: any } }) => {
     setPrice(event.target.value);
