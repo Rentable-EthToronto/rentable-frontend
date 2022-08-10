@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import type { FC } from "react";
 import { useEffect, useState, useCallback } from "react";
-import RentableABI from "../deployment/Rentable.abi.json";
+import RentableABI from "../deployment/Rentable.abi.abi.json";
 import { useWeb3 } from "../context/web3Context";
 import Layout from "../components/layout";
 import { useContract, useProvider, useContractRead } from "wagmi";
