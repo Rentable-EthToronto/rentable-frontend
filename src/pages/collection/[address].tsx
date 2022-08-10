@@ -36,6 +36,9 @@ const CollectionPage: NextPage<{ data: string; address: string }> = ({
     const address = ownedNft.contract.address;
     const description = ownedNft.description;
     const image = ownedNft.media[0]?.gateway;
+    if (address.toLocaleLowerCase() === '0xcdfd4f4c5a7f4138d65d31842cd9081f8539c57a') {
+      return (<></>)
+    }
 
     return (
       <NftCard image={image} key={ownedNft.tokenId}>
