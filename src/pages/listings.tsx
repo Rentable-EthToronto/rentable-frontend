@@ -1,12 +1,12 @@
 import type { NextPage } from "next";
 import type { FC } from "react";
 import { useEffect, useState, useCallback } from "react";
-import RentableABI from "../deployment/Rentable.json";
+import RentableABI from "../deployment/Rentable.abi.json";
 import { useWeb3 } from "../context/web3Context";
 import Layout from "../components/layout";
 import { useContract, useProvider, useContractRead } from "wagmi";
 
-const rentableABI = RentableABI.abi;
+const rentableABI = RentableABI;
 const contractConfig = {
   addressOrName: "0xcDFD4F4c5A7f4138d65D31842cd9081F8539c57a",
   contractInterface: rentableABI,
@@ -27,7 +27,6 @@ const Listings: NextPage = () => {
   const { data: ownerData } = useContractRead({
     ...contractConfig,
     functionName: "ownerOf",
-    tokenId: "0",
   });
 
   useEffect(() => {

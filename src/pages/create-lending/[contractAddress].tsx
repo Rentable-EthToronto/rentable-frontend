@@ -5,6 +5,7 @@ import { MediaRenderer } from "@thirdweb-dev/react";
 import { useRouter } from "next/router";
 import { alchemy } from "../../config/alchemy";
 import Layout from "@/src/components/layout";
+import { Input, Button } from "@mui/material";
 
 export async function getServerSideProps(context: NextPageContext) {
   const contractAddress: string | string[] | undefined =
@@ -55,9 +56,29 @@ const CreateLendingPage: NextPage<{ data: string }> = ({ data }) => {
             <div className="text-center font-semibold text-white">
               Lending NFT For:
             </div>
-            <div className="text-white text-sm">
-              {" lending duration: "}
-              <input
+            <div className="text-white text-sm pt-4">
+              {" Deposite Required: "}
+              <Input
+                type="number"
+                className="primary-input max-w-sm"
+                value={price}
+                onChange={handlePriceChange}
+              />
+              {" USDT "}
+            </div>
+            <div className="text-white text-sm pt-4">
+              {" Lending Fee: "}
+              <Input
+                type="number"
+                className="primary-input max-w-sm"
+                value={price}
+                onChange={handlePriceChange}
+              />
+              {" USDT "}
+            </div>
+            <div className="text-white text-sm pt-4">
+              {" Lending Duration: "}
+              <Input
                 type="number"
                 className="primary-input max-w-sm"
                 value={price}
@@ -65,6 +86,12 @@ const CreateLendingPage: NextPage<{ data: string }> = ({ data }) => {
               />
               {" hr "}
             </div>
+            <Button
+              className="btn btn-primary pt-4"
+              sx={{ backgroundColor: "white" }}
+            >
+              Lend it
+            </Button>
           </div>
         </div>
       </div>
