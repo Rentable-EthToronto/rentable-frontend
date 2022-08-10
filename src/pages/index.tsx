@@ -10,7 +10,7 @@ const Home: NextPage = () => {
   return (
     <Layout>
       <div className="container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-        <div className="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
+        <div className="flex flex-col w-full xl:w-2/5 pb-24 justify-center lg:items-start overflow-y-hidden ">
           <h1 className="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
             We can make your
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500">
@@ -26,6 +26,10 @@ const Home: NextPage = () => {
           <img
             className="mx-auto w-full md:w-4/5 transform -rotate-6 transition hover:scale-105 duration-700 ease-in-out hover:rotate-6"
             src="bored-ape.png"
+          />
+          <img
+            className="mx-auto w-full md:w-4/5 transform -rotate-6 transition hover:scale-105 duration-700 ease-in-out hover:rotate-6 rounded-xl"
+            src="moonbird.png"
           />
         </div>
       </div>

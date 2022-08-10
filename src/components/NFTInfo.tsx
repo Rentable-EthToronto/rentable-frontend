@@ -14,11 +14,11 @@ export const NFTInfo: React.FC<{
     <>
       <div
         id="title-and-link"
-        className="flex flex-col justify-between text-sm
+        className="flex flex-col justify-between text-sm 
        "
       >
         <div className="text-xl font-semibold">{title}</div>
-        <div className="mt-2 flex">
+        <div className="mt-2 flex ">
           <div className="text-sm">
             <span className="font-bold ">Token Address: </span>
             <a
