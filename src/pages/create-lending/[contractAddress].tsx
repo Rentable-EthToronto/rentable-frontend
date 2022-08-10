@@ -17,7 +17,7 @@ const CreateLendingPage: NextPage<{ data: string }> = ({ data }) => {
   const NFT: Nft = JSON.parse(data);
   const [price, setPrice] = React.useState<number>(0.05);
   const [duration, setDuration] = React.useState<number>(3600);
-  const  deposit = 30000;
+  const deposit = 30000;
 
   const { config } = usePrepareContractWrite({
     addressOrName: '0xcDFD4F4c5A7f4138d65D31842cd9081F8539c57a',
@@ -90,6 +90,7 @@ const CreateLendingPage: NextPage<{ data: string }> = ({ data }) => {
             <Button
               className="btn btn-primary pt-4"
               sx={{ backgroundColor: "white" }}
+              disabled={!write} onClick={() => write?.()}
             >
               Lend it
             </Button>
