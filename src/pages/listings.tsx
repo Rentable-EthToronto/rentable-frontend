@@ -8,7 +8,7 @@ import { useContract, useProvider, useContractRead } from "wagmi";
 
 const rentableABI = RentableABI.abi;
 const contractConfig = {
-  addressOrName: "0x395451130f3F64b458eCE52D6731a5e5d415cF34",
+  addressOrName: "0xcDFD4F4c5A7f4138d65D31842cd9081F8539c57a",
   contractInterface: rentableABI,
 };
 
