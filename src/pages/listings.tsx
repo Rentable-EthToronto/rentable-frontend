@@ -80,7 +80,6 @@ const Listings: NextPage = () => {
 
       <div className="container pt-24 md:pt-24 mx-auto flex flex-wrap flex-col md:flex-row items-center text-base text-white">
         Totally {totalRentalUnits} rentable NFTs Owner{owner}
-        Balance of {address} is {balance}
       </div>
       <div className="container pt-24 md:pt-24 mx-auto flex flex-wrap flex-col md:flex-row items-center text-base text-white">
         Balance of {address} is {balance}

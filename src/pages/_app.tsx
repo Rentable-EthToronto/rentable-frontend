@@ -11,7 +11,7 @@ import { targetChainId } from '../config/targetChainConfig';
 
 const { chains, provider } = configureChains(
   [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum, chain.goerli, chain.kovan, chain.rinkeby],
-  [jsonRpcProvider({ rpc: () => ({ http: 'https://rpc.ankr.com/eth' }) }), publicProvider()]
+  [jsonRpcProvider({ rpc: () => ({ http: 'https://rpc.ankr.com/eth_goerli' }) }), publicProvider()]
 );
 
 const { connectors } = getDefaultWallets({
