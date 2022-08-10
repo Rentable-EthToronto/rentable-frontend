@@ -50,7 +50,7 @@ const CollectionPage: NextPage<{ data: string; address: string }> = ({
               id="list-button"
               onClick={() => {
                 router.push(
-                  `/create-listing/${address}?tokenId=${ownedNft.tokenId}`
+                  `/create-lending/${address}?tokenId=${ownedNft.tokenId}`
                 );
               }}
               className="mt-2 bg-white text-black p-2 rounded-lg"
